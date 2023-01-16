@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Exception;
 use PDO;
 
 class ToDoList extends Model
 {
-    public static function fetchToDoLists(int $userId)
+    public static function fetchToDoLists(int $userId): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("SELECT * FROM to_do_lists WHERE user_id = :userId");
@@ -58,7 +57,7 @@ class ToDoList extends Model
         ];
     }
 
-    public static function createToDoList($payload)
+    public static function createToDoList(array $payload)
     {
         try {
             $stmt = parent::$dbConnection->prepare("INSERT INTO to_do_lists (name, user_id) VALUES (:name, :user_id)");
@@ -78,7 +77,7 @@ class ToDoList extends Model
         }
     }
 
-    public static function updateToDoList($payload)
+    public static function updateToDoList($payload): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("UPDATE to_do_lists SET name = :name WHERE id = :id and user_id = :user_id");

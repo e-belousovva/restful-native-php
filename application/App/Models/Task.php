@@ -8,7 +8,7 @@ use PDO;
 
 class Task extends Model
 {
-    public static function fetchTasks($listId)
+    public static function fetchTasks($listId): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("SELECT * FROM tasks WHERE list_id = :listId");
@@ -28,7 +28,7 @@ class Task extends Model
         }
     }
 
-    public static function fetchTaskById(int $listId, int $taskId)
+    public static function fetchTaskById(int $listId, int $taskId): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("SELECT * FROM tasks WHERE list_id = :listId and id = :id");
@@ -55,14 +55,10 @@ class Task extends Model
     }
 
     /**
-     * createTask
-     *
-     * creates a new product
-     *
      * @param array $payload  Contains all the fields that will be created.
-     * @return array Anonymous
+     * @return array
      */
-    public static function createTask($payload)
+    public static function createTask(array $payload): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("INSERT INTO tasks (name, list_id) VALUES (:name, :list_id)");
@@ -83,14 +79,10 @@ class Task extends Model
     }
 
     /**
-     * updateTask
-     *
-     * update a product based on the product ID
-     *
      * @param $payload
-     * @return array Anonymous
+     * @return array
      */
-    public static function updateTask($payload)
+    public static function updateTask($payload): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("UPDATE tasks SET name = :name WHERE id = :id and list_id = :list_id");
@@ -111,14 +103,10 @@ class Task extends Model
     }
 
     /**
-     * deleteTask
-     *
-     * deletes a product based on the product ID
-     *
-     * @param int $Id  An array of values to be deleted...
-     * @return array Anonymous
+     * @param int $id
+     * @return array
      */
-    public static function deleteTask(int $id)
+    public static function deleteTask(int $id): array
     {
         try {
             $stmt = parent::$dbConnection->prepare("DELETE FROM tasks WHERE id = :id");

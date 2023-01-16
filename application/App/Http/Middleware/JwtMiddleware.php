@@ -113,27 +113,4 @@ class JwtMiddleware
             die();
         }
     }
-
-    /**
-     * getUser
-     *
-     * Fetches the user ID from the JWT Token and returns a User Array.
-     *
-     * @param void
-     * @return  array
-     */
-    public function getUser(): array
-    {
-        try {
-            $user = (new User())->fetchUserById(self::$user_id);
-
-            if ($user['status']) {
-                return $user['data'];
-            }
-
-            return [];
-        } catch (Exception $e) {
-            return [];
-        }
-    }
 }

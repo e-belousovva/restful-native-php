@@ -6,14 +6,9 @@ namespace App\Models;
 
 class User extends Model
 {
-
     /**
-     * createUser
-     *
-     * creates a new User
-     *
      * @param array $payload Contains all the fields that will be created.
-     * @return array Anonymos
+     * @return array
      */
     public static function createUser(array $payload): array
     {
@@ -38,41 +33,8 @@ class User extends Model
     }
 
     /**
-     * fetchUserById
-     *
-     * fetches a user by it's Id
-     *
-     * @param $id
-     * @return array Anonymous
-     */
-    public static function fetchUserById($id): array
-    {
-        $Sql = "SELECT id, firstName, lastName, email, created_at, updated_at FROM `users` WHERE id = :id";
-        Parent::query($Sql);
-        // Bind Params...
-        Parent::bindParams('id', $id);
-        $Data = Parent::fetch();
-
-        if (!empty($Data)) {
-            return [
-                'status' => true,
-                'data' => $Data
-            ];
-        }
-
-        return [
-            'status' => false,
-            'data' => []
-        ];
-    }
-
-    /**
-     * checkEmail
-     *
-     * fetches a user by it's email
-     *
      * @param string $email The email of the row to be fetched...
-     * @return array Anonymos
+     * @return array
      */
     public static function checkEmail(string $email): array
     {

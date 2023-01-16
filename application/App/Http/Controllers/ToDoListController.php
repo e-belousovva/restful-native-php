@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Task;
-use App\PdfGenerator;
 use App\Models\ToDoList;
 use Cezpdf;
 use Exception;
